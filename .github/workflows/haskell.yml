@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest # or macOS-latest, or windows-latest
-    name: Build and test Simple Type Checker
+    name: Build and test
     steps:
       - uses: actions/checkout@v2
       - uses: haskell/actions/setup@v1
