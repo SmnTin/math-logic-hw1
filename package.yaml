@@ -37,3 +37,4 @@ tests:
     - tasty >= 1.4
     - tasty-hunit >= 0.10
     - tasty-quickcheck >= 0.10
+    - tasty-smallcheck >= 0.8

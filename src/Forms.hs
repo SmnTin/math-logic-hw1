@@ -1,10 +1,11 @@
 {-# LANGUAGE InstanceSigs #-}
 module Forms where
 
-import Data.List.NonEmpty (NonEmpty ((:|)))
+import Data.List.NonEmpty (NonEmpty ((:|)), nonEmpty)
 import Data.Foldable (Foldable(foldl'))
 import Data.Maybe (fromJust)
 import Data.List (union)
+import Data.Monoid (All(getAll, All))
 
 
 type Symb = String
@@ -39,9 +40,13 @@ data Literal = Lit Symb
 
 
 newtype Clause = Clause (NonEmpty Literal)
+clause = Clause . fromJust . nonEmpty
 
 newtype CNF = CNF (NonEmpty Clause)
 newtype DNF = DNF (NonEmpty Clause)
+cnf = CNF . fromJust . nonEmpty
+dnf = DNF . fromJust . nonEmpty
+
 
 
 data NNF = NNFVar Literal
@@ -163,3 +168,11 @@ supportB (a :\/:. b) = supportB a `union` supportB b
 
 support :: Formula -> [Symb]
 support = supportB . toForm
+
+
+inputs :: [Symb] -> [Interpretation]
+inputs = mapM (\s -> [(s,True), (s,False)])
+
+equivalent :: Formula -> Formula -> Bool
+equivalent a b = getAll $ foldMap testOnInterpret $ inputs $ support a `union` support b
+    where testOnInterpret int = All $ evaluate int a == evaluate int b
