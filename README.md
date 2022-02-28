@@ -1,5 +1,7 @@
 # math-logic-hw1
 
+[![Haskell CI](https://github.com/SmnTin/math-logic-hw1/actions/workflows/haskell.yml/badge.svg)](https://github.com/SmnTin/math-logic-hw1/actions/workflows/haskell.yml)
+
 ## Prerequisites
 
 You need [Stack](https://docs.haskellstack.org/en/stable/README/) build system only.
