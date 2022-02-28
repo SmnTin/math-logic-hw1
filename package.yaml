@@ -34,3 +34,6 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - math-logic-hw1
+    - tasty >= 1.4
+    - tasty-hunit >= 0.10
+    - tasty-quickcheck >= 0.10
